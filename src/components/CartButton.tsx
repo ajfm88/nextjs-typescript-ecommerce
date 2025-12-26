@@ -1,9 +1,11 @@
 import { Button } from "./ui/button";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import { useAppSelector } from "@/hooks";
 function CartButton() {
-  const numItemsInCart = 5;
+  const numItemsInCart = useAppSelector(
+    (state) => state.cartState.numItemsInCart
+  );
 
   return (
     <Button
@@ -21,4 +23,5 @@ function CartButton() {
     </Button>
   );
 }
+
 export default CartButton;

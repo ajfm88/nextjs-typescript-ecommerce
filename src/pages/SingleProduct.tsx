@@ -12,6 +12,26 @@ import { SelectProductColor, SelectProductAmount } from "@/components";
 import { Mode } from "@/components/SelectProductAmount";
 
 import { type LoaderFunction } from "react-router-dom";
+import { type CartItem } from "@/utils";
+import { useAppDispatch } from "@/hooks";
+import { addItem } from "@/features/cart/cartSlice";
+
+const dispatch = useAppDispatch();
+
+const cartProduct: CartItem = {
+  cartID: product.id + productColor,
+  productID: product.id,
+  image,
+  title,
+  price,
+  amount,
+  productColor,
+  company,
+};
+
+const addToCart = () => {
+  dispatch(addItem(cartProduct));
+};
 
 export const loader: LoaderFunction = async ({
   params,
