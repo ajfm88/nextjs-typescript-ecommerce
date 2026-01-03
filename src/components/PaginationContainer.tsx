@@ -42,7 +42,6 @@ function PaginationContainer() {
     search,
     pathname,
   });
-
   return (
     <Pagination className="mt-16">
       <PaginationContent>

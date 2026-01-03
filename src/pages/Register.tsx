@@ -13,17 +13,16 @@ export const action: ActionFunction = async ({
   const data = Object.fromEntries(formData);
   try {
     await customFetch.post("/auth/local/register", data);
-
     toast({ description: "Registered" });
     return redirect("/login");
   } catch (error) {
-    console.log(error);
-
+    // console.log(error);
     const errorMsg =
       error instanceof AxiosError
         ? error.response?.data.error.message
         : "Registration Failed";
     toast({ description: errorMsg });
+
     return null;
   }
 };
@@ -36,17 +35,13 @@ function Register() {
           <CardTitle className="text-center">Register</CardTitle>
         </CardHeader>
         <CardContent>
-          <Form>
-            <FormInput type="text" name="username" defaultValue="test" />
-            <FormInput type="email" name="email" defaultValue="test@test.com" />
-            <FormInput type="password" name="password" defaultValue="secret" />
-
-            <Button type="submit" variant="default" className="w-full mt-4">
-              <SubmitBtn text="Register" className="w-full mt-4" />
-            </Button>
-
+          <Form method="post">
+            <FormInput type="text" name="username" />
+            <FormInput type="email" name="email" />
+            <FormInput type="password" name="password" />
+            <SubmitBtn text="Register" className="w-full mt-4" />
             <p className="text-center mt-4">
-              Already a member?
+              Already a member?{" "}
               <Button type="button" asChild variant="link">
                 <Link to="/login">Login</Link>
               </Button>

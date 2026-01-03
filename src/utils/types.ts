@@ -44,6 +44,8 @@ export type Params = {
   page?: number;
 };
 
+export type ProductsResponseWithParams = ProductsResponse & { params: Params };
+
 export type SingleProductResponse = {
   data: Product;
   meta: {};
@@ -69,4 +71,34 @@ export type CartState = {
   orderTotal: number;
 };
 
-export type ProductsResponseWithParams = ProductsResponse & { params: Params };
+export type Checkout = {
+  name: string;
+  address: string;
+  chargeTotal: number;
+  orderTotal: string;
+  cartItems: CartItem[];
+  numItemsInCart: number;
+};
+
+export type Order = {
+  id: number;
+  attributes: {
+    address: string;
+    cartItems: CartItem[];
+    createdAt: string;
+    name: string;
+    numItemsInCart: number;
+    orderTotal: string;
+    publishedAt: string;
+    updatedAt: string;
+  };
+};
+
+export type OrdersMeta = {
+  pagination: Pagination;
+};
+
+export type OrdersResponse = {
+  data: Order[];
+  meta: OrdersMeta;
+};
